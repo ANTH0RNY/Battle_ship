@@ -1,6 +1,12 @@
 const boardLength = 10;
 const boardArea = 100;
 
+function exclude(list1, list) {
+  return list1.filter(function (el) {
+    return list.indexOf(el) < 0;
+  });
+}
+
 function flatten([y, x]) {
   return y * boardLength + x;
 }
@@ -88,10 +94,48 @@ class Gameboard {
     if (!wasHit) {
       this.missedMoves.push(flat);
     }
+    return wasHit;
   }
   allSunk() {
     return this.ships.every((val) => val.ship.isSunk());
   }
 }
 
-export { Ship, flatten, deFlatten, Gameboard };
+class Player {
+  constructor() {
+    this.enemy = null;
+    this.movesPlayed = [];
+    this.Gameboard = new Gameboard();
+  }
+  addEnemy(player) {
+    this.enemy = player;
+  }
+  attack([y, x]) {
+    if (this.enemy === null) {
+      throw new Error("Must add new enemy before attacking");
+    }
+    this.enemy.Gameboard.receiveAttack([y, x]);
+    this.movesPlayed.push(flatten([y, x]));
+  }
+  randomPlay() {
+    if (this.enemy === null)
+      throw new Error("Can not do random play without  an enemy");
+
+    let remaingMoves = [];
+    for (let i = 0; i < boardArea; i++) {
+      remaingMoves.push(i);
+    }
+    remaingMoves = exclude(remaingMoves, this.movesPlayed);
+    remaingMoves = exclude(remaingMoves, this.enemy.movesPlayed);
+    if (remaingMoves.length == 0) {
+      return;
+    }
+    const index = Math.floor(Math.random() * remaingMoves.length);
+    const flat = remaingMoves[index];
+    const [y, x] = deFlatten(flat);
+    this.attack([y, x]);
+    return [y, x];
+  }
+}
+
+export { Ship, flatten, deFlatten, Gameboard, Player };

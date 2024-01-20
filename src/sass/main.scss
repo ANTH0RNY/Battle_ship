@@ -1,0 +1,40 @@
+*{
+  box-sizing: border-box;
+}
+
+.game-boards{
+  display: grid;
+  gap: 2rem;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  width: min(50rem, 80%);
+  // width: 40rem;
+  margin-inline: auto;
+  margin-top: 2rem;
+}
+.board{
+  display: grid;
+  grid-template: repeat(10, 1fr)/repeat(10, 1fr);
+    aspect-ratio: 1/1;
+    grid-auto-flow: dense;
+    transform: scaleY(-1); /* mirror vertically */
+  // grid-template-rows: repeat(10,1fr);
+}
+.boardCell{
+  width: 100%;
+  aspect-ratio: 1/1;
+    margin:0;
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0;
+  font-weight: bold;
+
+}
+.ship-cell{
+  background-color: red;
+  // border: none;
+}

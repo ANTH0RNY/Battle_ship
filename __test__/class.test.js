@@ -1,4 +1,4 @@
-import { Ship, flatten, deFlatten, Gameboard } from "../class";
+import { Ship, flatten, deFlatten, Gameboard, Player } from "../src/class";
 import { describe, expect, test } from "@jest/globals";
 
 describe("Testing Ship class", () => {
@@ -69,5 +69,31 @@ describe("Testing Gameboard class", () => {
     Gameboard2.receiveAttack([8, 1]);
     Gameboard2.receiveAttack([8, 2]);
     expect(Gameboard2.allSunk()).toBe(true);
+  });
+});
+
+describe("Testing Player class", () => {
+  test("adding enemy", () => {
+    const player1 = new Player();
+    const player2 = new Player();
+    player1.addEnemy(player2);
+    expect(player1.enemy).toEqual(player2);
+    expect(player2.enemy).toBe(null);
+  });
+  test("Testing attacking players", () => {
+    const player1 = new Player();
+    const player2 = new Player();
+    player1.Gameboard.place(4, [8, 6]);
+    player2.Gameboard.place(3, [6, 3], false);
+    player1.addEnemy(player2);
+    player2.addEnemy(player1);
+    player1.attack([6, 2]);
+    expect(player2.Gameboard.missedMoves).toEqual([62]);
+    player1.attack([6, 3]);
+    player1.attack([6, 4]);
+    player1.attack([6, 5]);
+    expect(player2.Gameboard.ships[0].places).toEqual([63, 64, 65]);
+    expect(flatten(player1.randomPlay())).not.toContain(...player1.movesPlayed);
+    expect(flatten(player1.randomPlay())).not.toContain(...player2.movesPlayed);
   });
 });

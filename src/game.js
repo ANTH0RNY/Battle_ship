@@ -74,6 +74,7 @@ function createBoards() {
     div2.setAttribute("data-cellId", i);
     div2.addEventListener("click", () => {
       if (player2.Gameboard.allSunk() || player1.Gameboard.allSunk()) {
+        // document.querySelector(".board-2").classList.add("disable");
         return;
       }
       player1.attack(deFlatten(i));
@@ -82,7 +83,13 @@ function createBoards() {
       if (play) {
         handlePlay(flatten(play), player1.Gameboard, (i = 0));
       }
-
+      if (player1.Gameboard.allSunk() || player2.Gameboard.allSunk()) {
+        document.querySelector(".board-2").classList.add("disable");
+        const winner = document.querySelector(".winner");
+        winner.innerText = player1.Gameboard.allSunk()
+          ? "Player 1 won"
+          : "Player 2 won";
+      }
       // console.log(player2.randomPlay());
     });
     div1.classList.add("boardCell");

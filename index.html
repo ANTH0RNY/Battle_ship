@@ -3,10 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle ship</title>
     <script src="./dist/main.js" defer></script>
+    <link rel="icon" href="./dist/img/battlecruiser.png" type="image/png">
+    <title>Battle Ship</title>
 </head>
 <body>
+    <h1 class="title">
+        Battle Ship
+    </h1>
+    <div class="game-boards">
+        <div class="board board-1"></div>
+        <div class="board board-2"></div>
+    </div>
+    <div class="winner"></div>
+    <h2 class="announce">
+        Drag your parts
 
+    </h2>
+    <h2 class="announce1 not-visible">
+        Play!!
+    </h2>
+    <!-- <button class=" btn not-visible">Play</button> -->
+    <div class="game-pieces">
+        <div class="gamePiece 4 vert" draggable="true" id="vert-4" data-length="4">
+            <div class="piece"></div>
+            <div class="piece"></div>
+            <div class="piece"></div>
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece hor 3" draggable="true" id="hor-3" data-length="-3">
+            <div class="piece"></div>
+            <div class="piece"></div>
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece vert 3" draggable="true" id="vert-3" data-length="3">
+            <div class="piece"></div>
+            <div class="piece"></div>
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece hor 2" draggable="true" id="hor-0-2" data-length="-2">
+            <div class="piece"></div>
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece hor 2" draggable="true" id="hor-1-2" data-length="-2">
+            <div class="piece"></div>
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece vert 2" draggable="true" id="vert-2" data-length="2">
+            <div class="piece"></div>
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece vert 4" draggable="true" id="single-1" data-length="1">
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece vert 4" draggable="true" id="single-1" data-length="1">
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece vert 4" draggable="true" id="single-1" data-length="1">
+            <div class="piece"></div>
+        </div>
+        <div class="gamePiece vert 4" draggable="true" id="single-1" data-length="1">
+            <div class="piece"></div>
+        </div>
+    </div>
 </body>
 </html>

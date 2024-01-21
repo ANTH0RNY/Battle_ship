@@ -126,7 +126,7 @@ class Player {
       remaingMoves.push(i);
     }
     remaingMoves = exclude(remaingMoves, this.movesPlayed);
-    remaingMoves = exclude(remaingMoves, this.enemy.movesPlayed);
+    // remaingMoves = exclude(remaingMoves, this.enemy.movesPlayed);
     if (remaingMoves.length == 0) {
       return;
     }
